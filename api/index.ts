@@ -1,6 +1,5 @@
 import express, { Request, Response, NextFunction } from 'express';
 import { MongoClient } from 'mongodb';
-import ServerlessHttp from 'serverless-http';
 import path from 'path';
 import dotenv from 'dotenv';
 
@@ -76,6 +75,6 @@ app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
 
-const handler = ServerlessHttp(app);
 
-module.exports = handler;
+
+module.exports = app;

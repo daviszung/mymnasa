@@ -6,7 +6,7 @@ require("esbuild")
     entryPoints: ["src/index.jsx"],
     bundle: true,
     minify: true,
-    outfile: "dist/bundle.js",
+    outfile: "public/bundle.js",
     jsx: "automatic",
   })
   .catch(() => process.exit(1));

@@ -1,5 +1,5 @@
 import React from "react"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 
 type nasaData = {
@@ -12,15 +12,24 @@ type nasaData = {
   url?: string,
 }
 
+
 export function App(){
 
   const [nasaData, setNasaData] = useState<nasaData>({})
-  const [url, setUrl] = useState()
+  const [url, setUrl] = useState();
+  const [env, setEnv] = useState();
+
+  useEffect(() => {
+    fetch('/api/env')
+      .then(response => response.json())
+      .then(data => setEnv(data))
+      .catch(error => console.error('Error fetching config:', error));
+  },[])
 
   async function getImage() {
-    const response = await fetch("https://mymnasa.vercel.app:3000/api/image");
+    const fetchURL = env === "prod" ? "http://mymnasa.vercel.app/api/image" : "http://localhost:3000/api/image"
+    const response = await fetch(fetchURL);
     const data = await response.json()
-    console.log(data);
     setNasaData(prevState => ({...prevState, data}));
     setUrl(data.url);
   }

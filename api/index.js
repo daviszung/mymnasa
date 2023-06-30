@@ -12,8 +12,16 @@ const port = 3000;
 // Middleware
 app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: false }));
+// Toggle prod vs dev environment
+const envi = process.env.ENVI;
+console.log(envi);
+app.use(express_1.default.static(path_1.default.join(__dirname, '../dist')));
 // Serve files from dist
-app.use(express_1.default.static(path_1.default.join(__dirname, 'dist')));
+app.use(express_1.default.static(path_1.default.join(__dirname, '../dist')));
+app.get('/api/env', (req, res) => {
+    console.log("Request for environment variable");
+    res.json(envi);
+});
 // Endpoints
 app.get('/api/image', async (req, res) => {
     const response = await fetch(`https://api.nasa.gov/planetary/apod?api_key=${process.env.NASA_API_KEY}`);

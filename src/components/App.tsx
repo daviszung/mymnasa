@@ -40,7 +40,9 @@ export function App(){
     });
 
     const data = await response.json();
-    
+
+    console.log("Received Environment Variable: ", data);
+
     setNasaData(prevState => ({...prevState, data}));
     setUrl(data.url);
   }

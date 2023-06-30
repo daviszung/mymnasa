@@ -28,7 +28,6 @@ const port = 3000;
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-
 // Toggle prod vs dev environment
 const envi = process.env.ENVI;
 console.log(envi);
@@ -40,6 +39,8 @@ app.use(express.static(path.join(__dirname, '../public')))
 
 app.get('/api/env', (req: Request, res: Response) => {
   console.log("Request for environment variable");
+  
+  console.log("env");
   res.json(envi);
 });
 

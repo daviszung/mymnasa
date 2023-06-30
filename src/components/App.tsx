@@ -22,8 +22,13 @@ export function App(){
   useEffect(() => {
     fetch('/api/env')
       .then(response => response.json())
-      .then(data => setEnv(data))
+      .then(data => {
+        console.log(data);
+        setEnv(data);
+      })
       .catch(error => console.error('Error fetching config:', error));
+
+
   },[])
 
   async function getImage() {
@@ -40,8 +45,6 @@ export function App(){
     });
 
     const data = await response.json();
-
-    console.log("Received Environment Variable: ", data);
 
     setNasaData(prevState => ({...prevState, data}));
     setUrl(data.url);

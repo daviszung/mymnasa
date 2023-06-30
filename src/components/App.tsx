@@ -27,14 +27,20 @@ export function App(){
   },[])
 
   async function getImage() {
-    const fetchURL = env === "prod" ? "https://mymnasa.vercel.app/api/image" : "http://localhost:3000/api/image"
+
+    const fetchURL = env === "prod"
+    ? "https://mymnasa.vercel.app/api/image" 
+    : "http://localhost:3000/api/image";
+
     const response = await fetch(fetchURL, {
       method: "GET",
       headers: {
         "Access-Control-Allow-Origin": "*"
       }
     });
-    const data = await response.json()
+
+    const data = await response.json();
+    
     setNasaData(prevState => ({...prevState, data}));
     setUrl(data.url);
   }

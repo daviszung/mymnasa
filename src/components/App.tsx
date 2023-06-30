@@ -33,6 +33,8 @@ export function App(){
 
   async function getImage() {
 
+    console.log("env: ", env);
+
     const fetchURL = env === "prod"
     ? "https://mymnasa.vercel.app/api/image" 
     : "http://localhost:3000/api/image";

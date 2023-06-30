@@ -39,7 +39,7 @@ app.use(express.static(path.join(__dirname, '../public')))
 
 app.get('/api/env', (req: Request, res: Response) => {
   console.log("Request for environment variable");
-  
+
   console.log("env");
   res.json(envi);
 });
@@ -48,6 +48,8 @@ app.get('/api/env', (req: Request, res: Response) => {
 app.get('/api/image', async (req: Request, res: Response) => {
   const response = await fetch(`https://api.nasa.gov/planetary/apod?api_key=${process.env.NASA_API_KEY}`);
   const data = await response.json()
+
+  console.log("Image: ", data);
 
   res.end(JSON.stringify(data));
 });

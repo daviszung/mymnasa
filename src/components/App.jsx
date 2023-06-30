@@ -1,10 +1,16 @@
-import React from "react";
-import { useState, useEffect } from "react";
-export function App() {
-    const [nasaData, setNasaData] = useState({});
-    const [url, setUrl] = useState();
-    const [env, setEnv] = useState();
-    useEffect(() => {
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.App = void 0;
+const react_1 = __importDefault(require("react"));
+const react_2 = require("react");
+function App() {
+    const [nasaData, setNasaData] = (0, react_2.useState)({});
+    const [url, setUrl] = (0, react_2.useState)();
+    const [env, setEnv] = (0, react_2.useState)();
+    (0, react_2.useEffect)(() => {
         fetch('/api/env')
             .then(response => response.json())
             .then(data => setEnv(data))
@@ -29,4 +35,5 @@ export function App() {
       {url ? (<img src={url} alt="Fetched Image"/>) : (<span>Loading image...</span>)}
     </div>);
 }
+exports.App = App;
 ;

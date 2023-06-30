@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "main": "api/index.ts",
-  "type": "module",
   "scripts": {
     "dev": "npm run build && cross-env ENVI=dev node api/index.js",
     "prod": "npm run build && cross-env ENVI=prod node api/index.js",

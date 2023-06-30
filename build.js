@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import esbuild from 'esbuild'
+const esbuild = require("esbuild")
 
 esbuild.build({
   logLevel: "info",

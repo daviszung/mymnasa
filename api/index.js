@@ -1,8 +1,7 @@
-import express from 'express';
-import path from 'path';
-import dotenv from 'dotenv';
-import { fileURLToPath } from 'url';
-import { client } from './db.js';
+const express = require("express");
+const path = require("path");
+const dotenv = require("dotenv");
+const client = require("./db.js")
 
 dotenv.config();
 
@@ -14,9 +13,6 @@ const port = 3000;
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-// Get module URL and convert it to the file path
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
 // Toggle prod vs dev environment
 const envi = process.env.ENVI;
@@ -62,4 +58,4 @@ app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
 
-export default app;
+module.exports = app;

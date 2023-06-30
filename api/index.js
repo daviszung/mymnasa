@@ -25,7 +25,11 @@ app.use(express.static(path.join(__dirname, '../public')))
 
 app.get('/api/env', (req, res) => {
   console.log("Request for environment variable");
-  res.json(envi);
+
+  const stringEnvi = JSON.stringify(envi);
+  console.log(stringEnvi);
+
+  res.end(stringEnvi);
 });
 
 // Endpoints

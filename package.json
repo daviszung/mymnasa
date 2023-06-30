@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "npm run build && npm run start",
     "build": "npx tsc && node build.js",
-    "start": "node api/server.js",
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

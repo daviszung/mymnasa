@@ -12,7 +12,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 // Serve files from dist
-app.use(express.static(path.join(__dirname, '../dist')))
+app.use(express.static(path.join(__dirname, 'dist')))
 
 
 // Endpoints

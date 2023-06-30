@@ -17,8 +17,8 @@ function App() {
         setUrl(data.url);
     }
     return (<div>
-      <button onClick={() => getImage()}>HELOOOOOOOOOOOOOOOOOOO</button>
-      {nasaData ? (<img src={url} alt="Fetched Image"/>) : (<span>Loading image...</span>)}
+      <button onClick={() => getImage()}>Get New Image</button>
+      {url ? (<img src={url} alt="Fetched Image"/>) : (<span>Loading image...</span>)}
     </div>);
 }
 exports.App = App;

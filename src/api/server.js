@@ -18,7 +18,6 @@ app.use(express_1.default.static(path_1.default.join(__dirname, '../../dist')));
 app.get('/api/image', async (req, res) => {
     const response = await fetch(`https://api.nasa.gov/planetary/apod?api_key=${process.env.NASA_API_KEY}`);
     const data = await response.json();
-    console.log("here");
     res.end(JSON.stringify(data));
 });
 app.post('/api/login', (req, res) => {

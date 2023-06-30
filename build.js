@@ -3,7 +3,7 @@
 require("esbuild")
   .build({
     logLevel: "info",
-    entryPoints: ["src/client/index.jsx"],
+    entryPoints: ["src/index.jsx"],
     bundle: true,
     minify: true,
     outfile: "dist/bundle.js",

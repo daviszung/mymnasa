@@ -2,11 +2,11 @@
   "name": "mymnasa",
   "version": "1.0.0",
   "description": "",
-  "main": "src/api/index.ts",
+  "main": "api/index.ts",
   "scripts": {
     "dev": "npm run build && npm run start",
     "build": "npx tsc && node build.js",
-    "start": "node src/api/server.js",
+    "start": "node api/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

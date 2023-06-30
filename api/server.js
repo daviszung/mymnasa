@@ -13,7 +13,8 @@ const port = 3000;
 app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: false }));
 // Serve files from dist
-app.use(express_1.default.static(path_1.default.join(__dirname, '../../dist')));
+console.log(path_1.default.join(__dirname, '../dist'));
+app.use(express_1.default.static(path_1.default.join(__dirname, '../dist')));
 // Endpoints
 app.get('/api/image', async (req, res) => {
     const response = await fetch(`https://api.nasa.gov/planetary/apod?api_key=${process.env.NASA_API_KEY}`);

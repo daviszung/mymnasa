@@ -18,7 +18,7 @@ export function App(){
   const [url, setUrl] = useState()
 
   async function getImage() {
-    const response = await fetch("http://localhost:3000/api/image");
+    const response = await fetch("https://mymnasa.vercel.app:3000/api/image");
     const data = await response.json()
     console.log(data);
     setNasaData(prevState => ({...prevState, data}));

@@ -29,7 +29,6 @@ app.use(express.urlencoded({ extended: false }));
 
 // Toggle prod vs dev environment
 const envi = process.env.ENVI;
-console.log(envi);
 
 app.use(express.static(path.join(__dirname, '../public')))
 
@@ -37,18 +36,13 @@ app.use(express.static(path.join(__dirname, '../public')))
 app.use(express.static(path.join(__dirname, '../public')))
 
 app.get('/api/env', (req: Request, res: Response) => {
-  console.log("Request for environment variable");
-
-  console.log("env");
   res.json(envi);
 });
 
 // Endpoints
 app.get('/api/image', async (req: Request, res: Response) => {
   const response = await fetch(`https://api.nasa.gov/planetary/apod?api_key=${process.env.NASA_API_KEY}`);
-  const data = await response.json()
-
-  console.log("Image: ", data);
+  const data = await response.json();
 
   res.end(JSON.stringify(data));
 });

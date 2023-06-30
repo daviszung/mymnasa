@@ -21,18 +21,13 @@ export function App(){
   useEffect(() => {
     fetch('/api/env')
       .then(response => response.json())
-      .then(data => {
-        console.log(data);
-        setEnv(data);
-      })
+      .then(data => setEnv(data))
       .catch(error => console.error('Error fetching config:', error));
 
 
   },[])
 
   async function getImage() {
-
-    console.log("env: ", env);
 
     const fetchURL = env === "prod"
     ? "https://mymnasa.vercel.app/api/image" 

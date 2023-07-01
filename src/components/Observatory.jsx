@@ -21,7 +21,7 @@ function Observatory({ env }) {
     }
     ;
     return (<div>
-      <button onClick={() => getImage()}>Get New Image</button>
+      <button onClick={() => getImage()}>Get Image</button>
       {url ? (<img src={url} alt="Fetched Image"/>) : (<span>Loading image...</span>)}
       <p>{nasaData}</p>
     </div>);

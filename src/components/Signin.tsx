@@ -32,10 +32,7 @@ export function Signin({ env, setLoggedIn} : SigninProps){
 
     const docInfo: documentInfo = getDocumentInfo();
 
-    if (!docInfo) {
-      console.log("get document info returned false");
-      return
-    }
+    if (!docInfo) return;
 
     const fetchURL = `${env === "prod" 
       ? "https://mymnasa.vercel.app/api/" + mode

@@ -1,6 +1,6 @@
 import express, { Request, Response, NextFunction } from 'express';
 import { MongoClient } from 'mongodb';
-import { userModel } from './model'
+import cors from 'cors';
 import path from 'path';
 import dotenv from 'dotenv';
 
@@ -30,6 +30,7 @@ const app = express();
 const port = 3000;
 
 // Middleware
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
@@ -79,7 +80,7 @@ app.post('/api/register', async (req: Request, res: Response) => {
   }
   catch (err) {
     console.log(err);
-  }
+  };
   
   res.json(dynamicResponse);
 });

@@ -1,5 +1,6 @@
 import express, { Request, Response, NextFunction } from 'express';
 import { MongoClient } from 'mongodb';
+import { userModel } from './model'
 import path from 'path';
 import dotenv from 'dotenv';
 
@@ -20,6 +21,11 @@ async function connectToDatabase() {
 
 connectToDatabase();
 
+// Declare users collection
+const db = client.db("mymnasa");
+const collection = db.collection("users");
+
+// Express boilerplate
 const app = express();
 const port = 3000;
 
@@ -27,10 +33,8 @@ const port = 3000;
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-// Toggle prod vs dev environment
+// Toggle prod/dev environment
 const envi = process.env.ENVI;
-
-app.use(express.static(path.join(__dirname, '../public')))
 
 // Serve files from public
 app.use(express.static(path.join(__dirname, '../public')))
@@ -51,8 +55,33 @@ app.post('/api/login', (req: Request, res: Response) => {
   // Login logic goes here
 });
 
-app.post('/api/register', (req: Request, res: Response) => {
-  // Registration logic goes here
+app.post('/api/register', async (req: Request, res: Response) => {
+  console.log(req.body);
+  const { username, password } = req.body;
+  let dynamicResponse;
+
+  try {
+    const existingUser = await collection.findOne({ username });
+
+    if (existingUser !== null){
+      console.log("existing user is not null");
+      dynamicResponse = "Account Already Exists"
+    } 
+    else {
+      const result = await collection.insertOne({
+        username: username,
+        password: password,
+        dateCreated: new Date()
+      });
+      console.log(result);
+      dynamicResponse = "Account Created"
+    }
+  }
+  catch (err) {
+    console.log(err);
+  }
+  
+  res.json(dynamicResponse);
 });
 
 // Catch-all route handler for unknown routes

@@ -17,6 +17,7 @@ function Observatory({ env, setLoggedIn }) {
             }
         });
         const data = await response.json();
+
         setNasaData(data.explanation);
         setUrl(data.url);
     }
@@ -24,6 +25,7 @@ function Observatory({ env, setLoggedIn }) {
     return (<div>
       <button onClick={() => getImage()}>Get Image</button>
       <button onClick={() => {
+            console.log("LOGGING OUT OF GOOGLE OAUTH");
             (0, google_1.googleLogout)();
             setLoggedIn(false);
         }}>Logout</button>

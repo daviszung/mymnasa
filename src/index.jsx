@@ -28,8 +28,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const React = __importStar(require("react"));
 const client_1 = __importDefault(require("react-dom/client"));
+const google_1 = require("@react-oauth/google");
 const App_jsx_1 = require("./components/App.jsx");
 const root = client_1.default.createRoot(document.getElementById('root'));
 root.render(<React.StrictMode>
-    <App_jsx_1.App />
+    <google_1.GoogleOAuthProvider clientId='1083148561370-upi86atao26o1rl23r1da2t6a73ddtbh.apps.googleusercontent.com'>
+      <App_jsx_1.App />
+    </google_1.GoogleOAuthProvider>
   </React.StrictMode>);

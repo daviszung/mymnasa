@@ -1,3 +1,5 @@
+import { GoogleLogin, CredentialResponse } from '@react-oauth/google';
+
 type SigninProps = {
   env: string | undefined;
   setLoggedIn: Function;
@@ -62,13 +64,48 @@ export function Signin({ env, setLoggedIn} : SigninProps){
 
     return
   };
+
+  // async function sendCredential(credential: CredentialResponse) {
+
+  //   const fetchURL = env === "prod" 
+  //   ? "https://mymnasa.vercel.app/api/cred"
+  //   : "http://localhost:3000/api/cred"
+
+  //   let response = await fetch(fetchURL, {
+  //     method: "POST",
+  //     headers: {
+  //       "Access-Control-Allow-Origin": "*",
+  //       "Content-Type": "application/json"
+  //     },
+  //     body: JSON.stringify(credential)
+  //   });
+
+  //   response = await response.json()
+
+  //   console.log(response);
+  // }
   
   return (
-    <div>
-      <input id="username" type="text" placeholder="username" minLength={5}></input>
-      <input id="password" type="password" placeholder="password" minLength={5}></input>
-      <button onClick={() => sendAccountInfo("login")}>Login</button>
-      <button onClick={() => sendAccountInfo("register")}>Create Account</button>
+    <div id='signin'>
+      <div className='inputContainer'>
+        <input id="username" type="text" placeholder="username"></input>
+        <input id="password" type="password" placeholder="password"></input>
+      </div>
+      <div className='accountBtnsContainer'>
+        <button onClick={() => sendAccountInfo("login")}>Login</button>
+        <button onClick={() => sendAccountInfo("register")}>Create Account</button>
+      </div>
+      <div>
+        <GoogleLogin 
+          onSuccess={() => {
+            setLoggedIn(true)
+            console.log("SUCCESSFUL LOGIN WITH GOOGLE");
+          }}
+          onError={() => {
+            console.log("LOGIN FAILED");
+          }}
+          />
+      </div>
     </div>
   )
 };

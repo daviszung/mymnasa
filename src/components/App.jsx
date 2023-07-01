@@ -17,8 +17,8 @@ function App() {
             .then(data => setEnv(data))
             .catch(error => console.error('Error fetching config:', error));
     }, []);
-    return (<div>
-      {loggedIn ? <Observatory_1.Observatory env={env}/> : <Signin_1.Signin env={env} setLoggedIn={setLoggedIn}/>}
+    return (<div id="app">
+      {loggedIn ? <Observatory_1.Observatory env={env} setLoggedIn={setLoggedIn}/> : <Signin_1.Signin env={env} setLoggedIn={setLoggedIn}/>}
     </div>);
 }
 exports.App = App;

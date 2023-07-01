@@ -16,8 +16,8 @@ export function App(){
   },[])
 
   return (
-    <div>
-      {loggedIn ? <Observatory env={env}/> : <Signin env={env} setLoggedIn={setLoggedIn}/>}
+    <div id="app">
+      {loggedIn ? <Observatory env={env} setLoggedIn={setLoggedIn}/> : <Signin env={env} setLoggedIn={setLoggedIn}/>}
     </div>
   )
 };

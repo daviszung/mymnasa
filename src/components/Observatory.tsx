@@ -1,11 +1,13 @@
 import { useState } from "react";
+import { googleLogout } from "@react-oauth/google";
 
 
 type ObservatoryProps = {
   env: string | undefined;
+  setLoggedIn: Function;
 }
 
-export function Observatory({ env }: ObservatoryProps){
+export function Observatory({ env, setLoggedIn }: ObservatoryProps){
   const [nasaData, setNasaData] = useState<string>();
   const [url, setUrl] = useState<string>();
 
@@ -31,6 +33,11 @@ export function Observatory({ env }: ObservatoryProps){
   return (
     <div>
       <button onClick={() => getImage()}>Get Image</button>
+      <button onClick={() => {
+        console.log("LOGGING OUT OF GOOGLE OAUTH");
+        googleLogout()
+        setLoggedIn(false)
+      }}>Logout</button>
       {url ? (
         <img src={url} alt="Fetched Image" />
       ) : (

@@ -2,7 +2,8 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Observatory = void 0;
 const react_1 = require("react");
-function Observatory({ env }) {
+const google_1 = require("@react-oauth/google");
+function Observatory({ env, setLoggedIn }) {
     const [nasaData, setNasaData] = (0, react_1.useState)();
     const [url, setUrl] = (0, react_1.useState)();
     async function getImage() {
@@ -22,6 +23,10 @@ function Observatory({ env }) {
     ;
     return (<div>
       <button onClick={() => getImage()}>Get Image</button>
+      <button onClick={() => {
+            (0, google_1.googleLogout)();
+            setLoggedIn(false);
+        }}>Logout</button>
       {url ? (<img src={url} alt="Fetched Image"/>) : (<span>Loading image...</span>)}
       <p>{nasaData}</p>
     </div>);

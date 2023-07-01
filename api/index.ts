@@ -52,12 +52,27 @@ app.get('/api/image', async (req: Request, res: Response) => {
   res.end(JSON.stringify(data));
 });
 
-app.post('/api/login', (req: Request, res: Response) => {
-  // Login logic goes here
+app.post('/api/login', async (req: Request, res: Response) => {
+  const { username, password } = req.body;
+  let dynamicResponse;
+
+  try {
+    const user = await collection.findOne({ username, password });
+
+    if (user !== null){
+      dynamicResponse = "Login Success"
+    } else {
+      dynamicResponse = "Login Failed"
+    }
+  }
+  catch (err) {
+    console.log(err);
+  }
+
+  res.json(dynamicResponse)
 });
 
 app.post('/api/register', async (req: Request, res: Response) => {
-  console.log(req.body);
   const { username, password } = req.body;
   let dynamicResponse;
 
@@ -65,16 +80,13 @@ app.post('/api/register', async (req: Request, res: Response) => {
     const existingUser = await collection.findOne({ username });
 
     if (existingUser !== null){
-      console.log("existing user is not null");
       dynamicResponse = "Account Already Exists"
-    } 
-    else {
+    } else {
       const result = await collection.insertOne({
         username: username,
         password: password,
         dateCreated: new Date()
       });
-      console.log(result);
       dynamicResponse = "Account Created"
     }
   }

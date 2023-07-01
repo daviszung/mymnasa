@@ -47,7 +47,12 @@ export function Signin({ env, setLoggedIn} : SigninProps){
       body: docInfo
     })
 
-    response = await response.json();
+    try {
+      response  = await response.json();
+    }
+    catch (err) {
+      console.log("ERROR", err);
+    }
 
     if (response === "Login Success") {
       setLoggedIn(true)

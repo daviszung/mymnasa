@@ -66,8 +66,14 @@ function App() {
             },
             body: docInfo
         });
-        await response.json();
-        console.log(response);
+        response = await response.json();
+        if (response === "Account Already Exists") {
+            alert("This username has been taken. Try a different username.");
+        }
+        else {
+            alert("Account Created!");
+        }
+        ;
     }
     ;
     return (<div>

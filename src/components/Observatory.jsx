@@ -17,21 +17,27 @@ function Observatory({ env, setLoggedIn }) {
             }
         });
         const data = await response.json();
-
         setNasaData(data.explanation);
         setUrl(data.url);
     }
     ;
-    return (<div>
-      <button onClick={() => getImage()}>Get Image</button>
-      <button onClick={() => {
+    return (<>
+    <button className="logoutBtn" onClick={() => {
             console.log("LOGGING OUT OF GOOGLE OAUTH");
             (0, google_1.googleLogout)();
             setLoggedIn(false);
         }}>Logout</button>
-      {url ? (<img src={url} alt="Fetched Image"/>) : (<span>Loading image...</span>)}
-      <p>{nasaData}</p>
-    </div>);
+    <div id="observatory">
+      <button onClick={() => getImage()}>Get Image</button>
+      <div className="theaterContainer">
+        <div>
+          {url ? (<img src={url} alt="Fetched Image"/>) : (<div>No Image...</div>)}
+        </div>
+        {nasaData && <p className="description">{nasaData}</p>}
+      </div>
+      
+    </div>
+    </>);
 }
 exports.Observatory = Observatory;
 ;

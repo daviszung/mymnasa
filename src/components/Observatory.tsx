@@ -31,19 +31,27 @@ export function Observatory({ env, setLoggedIn }: ObservatoryProps){
   };
   
   return (
-    <div>
+    <>
+    <button className="logoutBtn" onClick={() => {
+          console.log("LOGGING OUT OF GOOGLE OAUTH");
+          googleLogout()
+          setLoggedIn(false)
+        }}>Logout</button>
+    <div id="observatory">
       <button onClick={() => getImage()}>Get Image</button>
-      <button onClick={() => {
-        console.log("LOGGING OUT OF GOOGLE OAUTH");
-        googleLogout()
-        setLoggedIn(false)
-      }}>Logout</button>
-      {url ? (
-        <img src={url} alt="Fetched Image" />
-      ) : (
-        <span>Loading image...</span>
-      )}
-      <p>{nasaData}</p>
+      <div className="theaterContainer">
+        <div>
+          {url ? (
+          <img src={url} alt="Fetched Image" />
+        ) : (
+          <div>No Image...</div>
+        )}
+        </div>
+        {nasaData && <p className="description">{nasaData}</p>}
+      </div>
+      
     </div>
+    </>
+    
   )
 };

@@ -50,8 +50,8 @@ function Signin({ env, setLoggedIn }) {
     return (<div id='signin'>
       <div className='loginContainer'>
         <div className='inputContainer'>
-          <input id="username" type="text" placeholder="username" autoComplete='off'></input>
-          <input id="password" type="password" placeholder="password"></input>
+          <input id="username" className="signinInput" type="text" placeholder="username" autoComplete='off'></input>
+          <input id="password" className="signinInput" type="password" placeholder="password"></input>
         </div>
         <div className='accountBtnsContainer'>
           <button onClick={() => sendAccountInfo("login")}>Login</button>

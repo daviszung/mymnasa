@@ -70,7 +70,7 @@ button {
   align-items: center;
   justify-content: center;
   padding: 8px 16px;
-  font-size: 14px;
+  font-size: 1rem;
   font-weight: 700;
   border-radius: 4px;
   cursor: pointer;
@@ -88,7 +88,7 @@ button:active {
   background-color: #1565c0;
 }
 
-input {
+.signinInput {
   width: 80%;
   padding: 10px;
   font-size: 16px;
@@ -98,6 +98,10 @@ input {
   color: white;
   caret-color: white;
   outline: none;
+}
+
+.signinInput::placeholder {
+  color: white;
 }
 
 .inputContainer {
@@ -128,6 +132,7 @@ input {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 2rem;
 }
 
 .description {
@@ -141,4 +146,36 @@ input {
   max-height: 50%;
   overflow-y: auto;
   overflow-wrap: break-word;
+}
+
+.controlsContainer {
+  display: flex; 
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+}
+
+.inputDate {
+  padding: 15px;
+  background-color: #2196f3;
+  border-radius: 4px;
+  color: white;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+}
+
+::-webkit-calendar-picker-indicator {
+  background-color: white;
+  padding: 5px;
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+.imgContainer {
+  max-height: 700px;
+}
+
+.nasaImg {
+  max-height: 100%;
 }

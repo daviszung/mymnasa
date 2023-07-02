@@ -45,8 +45,9 @@ app.get('/api/env', (req: Request, res: Response) => {
 });
 
 // Endpoints
-app.get('/api/image', async (req: Request, res: Response) => {
-  const response = await fetch(`https://api.nasa.gov/planetary/apod?api_key=${process.env.NASA_API_KEY}`);
+app.post('/api/image', async (req: Request, res: Response) => {
+  const date = req.body.selectedDate;
+  const response = await fetch(`https://api.nasa.gov/planetary/apod?api_key=${process.env.NASA_API_KEY}&date=${date}`);
   const data = await response.json();
 
   res.end(JSON.stringify(data));

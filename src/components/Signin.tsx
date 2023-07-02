@@ -50,7 +50,7 @@ export function Signin({ env, setLoggedIn} : SigninProps){
     })
 
     try {
-      response  = await response.json();
+      response = await response.json();
     }
     catch (err) {
       console.log("ERROR", err);

@@ -23,17 +23,21 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Observatory = void 0;
+exports.Observatory = exports.isDateNotAfterToday = exports.isValidDate = void 0;
 const react_1 = __importStar(require("react"));
 const google_1 = require("@react-oauth/google");
 const isValidDate = (date) => {
-    return !isNaN(date.getTime());
+    const minYear = 1993;
+    const year = date.getFullYear();
+    return !isNaN(date.getTime()) && year > minYear;
 };
+exports.isValidDate = isValidDate;
 const isDateNotAfterToday = (date) => {
     const today = new Date();
     today.setHours(0, 0, 0, 0);
     return date <= today;
 };
+exports.isDateNotAfterToday = isDateNotAfterToday;
 function Observatory({ env, setLoggedIn }) {
     const [nasaData, setNasaData] = (0, react_1.useState)();
     const [url, setUrl] = (0, react_1.useState)();
@@ -45,7 +49,7 @@ function Observatory({ env, setLoggedIn }) {
         if (typeof selectedDate !== "string")
             return;
         const inputDate = new Date(selectedDate);
-        if (!isValidDate(inputDate) || !isDateNotAfterToday(inputDate))
+        if (!(0, exports.isValidDate)(inputDate) || !(0, exports.isDateNotAfterToday)(inputDate))
             return;
         const fetchURL = env === "prod"
             ? "https://mymnasa.vercel.app/api/image"

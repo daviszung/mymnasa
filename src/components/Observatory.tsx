@@ -7,11 +7,15 @@ type ObservatoryProps = {
   setLoggedIn: Function;
 }
 
-const isValidDate = (date: Date) => {
-  return !isNaN(date.getTime());
+export const isValidDate = (date: Date) => {
+   const minYear = 1993;
+ 
+   const year = date.getFullYear();
+ 
+   return !isNaN(date.getTime()) && year > minYear;
 };
 
-const isDateNotAfterToday = (date: Date) => {
+export const isDateNotAfterToday = (date: Date) => {
   const today = new Date();
   today.setHours(0, 0, 0, 0);
   return date <= today;

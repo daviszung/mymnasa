@@ -1,0 +1,23 @@
+A few thoughts that I had while developing this take home assessment:
+
+I was considering going this project with just vanilla js/ts and without react, as the scope
+of the project is very small, and it can be nice avoid overcomplicating things. However, I figured
+that knowing a frontend framework is in demand these days, and you'd probably like to have
+some assurance that I can use React or similar frontend frameworks/libraries.
+
+The scope of the project is small enough that it doesn't make too much sense to use a router
+for the express server, so all of the endpoint logic is directly on the endpoint.
+
+I made an extra request to the backend rather than just requesting the NASA data from the frontend
+in order to avoid exposing the API key on the frontend. 
+
+I was thinking of using a react-datepicker (https://www.npmjs.com/package/react-datepicker) library to get an easy to use 
+date picker, but all of the packages were massive in size and ended up doubling my bundle size,
+and adding 13 dependencies to the project... absurd honestly. In the end, I just used this:
+<input type="date">. Perhaps when in doubt, just use the basic HTML elements.
+https://bundlephobia.com/package/react-datepicker@4.15.0
+
+Vercel obfuscates some of the traditional server to client relationship with the /api route concept
+that it has going on. If I wasn't deploying on Vercel, I'd just use an AWS EC2 instead, and I think
+that could make what is happening more clear. But to make a case for Vercel, it is very nice that
+they configure https protocol for you so that you don't have to configure your own TLS certs.
